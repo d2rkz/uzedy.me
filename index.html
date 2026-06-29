@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>uzedy — About</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: #111118;
+    --bg-card-border: #1e1e2a;
+    --text: #d4d4e8;
+    --text-muted: #7a7a9a;
+    --accent: #5865f2;
+    --star-color: rgba(180,180,255,0.25);
+    --win95-teal: #008080;
+    --win95-gray: #c0c0c0;
+    --win95-dark: #000080;
+    --gh-green-1: #0e4429;
+    --gh-green-2: #006d32;
+    --gh-green-3: #26a641;
+    --gh-green-4: #39d353;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ── Barra ─────────────────────────────────── */
+  nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--bg-card-border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .nav-logo svg { opacity: 0.7; }
+
+  .nav-right {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── contenedor de las cosas de arriba lol ───────────────────────────────── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }  
+
+  .hero-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #7a22cc;
+    text-shadow: 3px 3px 0 #480088, -1px -1px 0 #000;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 500px;
+  }
+
+  .badge-name {
+    background: #12001a;
+    border: 1px solid #4e057e;
+    color: #7a22ff;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  .badge-alias {
+    background: #12001a;
+    border: 1px solid #4e057e;
+    color: #7a22ff;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  .polaroid {
+    position: absolute;
+    right: 1.5rem;
+    top: 3rem;
+    width: 180px;
+    background: #111;
+    border: 3px solid #222;
+    padding: 8px 8px 30px;
+    transform: rotate(3deg);
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.6);
+  }
+
+  .polaroid img { width: 100%; display: block; }
+
+  .status {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: #39d353;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  .psst {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 120px;
+    font-style: italic;
+  }
+
+  .arrow {
+    font-size: 1.2rem;
+    animation: bounce 1.5s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  .nadiesabe img {
+    position: absolute;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    user-select: none;
+    filter: drop-shadow(0 0 4px rgba(150,100,255,0.3));
+  }
+
+  .decoracion img {
+    position: absolute;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    user-select: none;
+    filter: drop-shadow(0 0 4px rgba(150,100,255,0.3));
+  }
+
+  /* ── forma de la page ───────────────────────────── */
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #470468;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* ── ABOUT parte ─────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  /* ── CARDS ──────────────────────────────────── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 1.25rem;
+  }
+
+  .card-left { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .nebula-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+    background: linear-gradient(135deg, #1a0533 0%, #0d1a4a 30%, #03071a 60%, #1a0533 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nebula-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 60%, rgba(120,0,200,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 70% 40%, rgba(0,60,200,0.4) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 30% at 50% 50%, rgba(200,100,255,0.15) 0%, transparent 60%);
+  }
+
+  .nebula-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, white, transparent),
+      radial-gradient(1.5px 1.5px at 60% 20%, white, transparent),
+      radial-gradient(1px 1px at 80% 70%, rgba(200,200,255,0.9), transparent),
+      radial-gradient(1px 1px at 40% 80%, rgba(255,200,200,0.9), transparent),
+      radial-gradient(2px 2px at 70% 60%, white, transparent);
+  }
+
+  .bio-headline {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+  }
+
+  .bio-text {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--text);
+    opacity: 0.85;
+  }
+
+  .age-badge {
+    display: inline-block;
+    background: #1e1e35;
+    border: 1px solid #3a3a60;
+    border-radius: 4px;
+    padding: 0 6px;
+    font-size: 0.78rem;
+    font-family: 'Courier New', monospace;
+    color: #a0a0ff;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Social Media ──────────────────────────────── */
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .social-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+
+  .social-links a:hover { color: var(--text); }
+
+  .cs-headline {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .cs-text {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--text);
+    opacity: 0.8;
+  }
+
+  .card-hyper { padding: 1rem 1.25rem; }
+
+  .hyper-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .hyper-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .hyper-tag {
+    background: #1a1a2e;
+    border: 1px solid #2a2a4a;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    color: var(--text);
+    opacity: 0.9;
+  }
+
+  /* ── juegos fav ─────────────────────────── */
+  .juegosfriv-title {
+    font-size: 1.5rem;
+    color: #470468;
+    font-weight: 600;
+    margin-top: -8.4px;
+    margin-bottom: 0.75rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .juegosfriv-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .juegosfriv-item {
+    background: #1a1a2e;
+    border: 2.5px solid #2a2a4a;
+    border-radius: 9px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .juegosfriv-item img {
+    width: 100px;
+    height: 150px;
+    border-radius: 4px;
+    object-fit: cover;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ── GALERÍA ────────────────────────────────────── */
+  .gallery-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #470468;
+    margin-bottom: 0.75rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .gallery-filters {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #2a2a4a;
+    padding-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    padding: 2px 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .filter:hover { color: var(--text); }
+
+  .filter.active {
+    color: #7a22ff;
+    border-bottom-color: #7a22ff;
+  }
+
+  .gallery-grid-proof {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .gallery-item-proof {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 2px solid #2a2a4a;
+    aspect-ratio: 1 / 1;
+    transition: all 0.3s ease;
+    background: #1a1a2e;
+    width: 100%;
+  }
+
+  .gallery-item-proof:hover {
+    border-color: #7a22ff;
+    box-shadow: 0 0 20px rgba(122, 34, 255, 0.15);
+  }
+
+  .gallery-item-proof img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .item-id {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #a0a0b0;
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    backdrop-filter: blur(4px);
+  }
+
+  .gallery-item-proof:hover .item-id { color: #fff; }
+
+  /* ── RESPONSIVE ─────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .gallery-grid-proof {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      padding: 3rem 1rem 1.5rem;
+    }
+
+    .hero-logo {
+      font-size: 2.2rem;
+    }
+
+    .polaroid {
+      position: static;
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    .hero-text {
+      max-width: 100%;
+    }
+
+    .psst {
+      max-width: 100%;
+    }
+
+    .gallery-grid-proof {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+
+    .gallery-filters {
+      gap: 1rem;
+    }
+
+    .filter {
+      font-size: 0.6rem;
+    }
+
+    .juegosfriv-items {
+      justify-content: center;
+    }
+
+    .juegosfriv-item {
+      flex: 1 1 120px;
+    }
+
+    .juegosfriv-item img {
+      width: 80px;
+      height: 120px;
+    }
+
+    .nav-right {
+      font-size: 0.7rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid-proof {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.4rem;
+    }
+
+    .item-id {
+      font-size: 0.5rem;
+      padding: 1px 6px;
+    }
+
+    .polaroid {
+      width: 130px;
+    }
+
+    .hero-logo {
+      font-size: 1.8rem;
+    }
+
+    .card {
+      padding: 0.8rem;
+    }
+
+    .gallery-title,
+    .juegosfriv-title {
+      font-size: 1.2rem;
+    }
+
+    .juegosfriv-item img {
+      width: 70px;
+      height: 100px;
+    }
+  }
+
+  /* ── Ventanas Win95 (decorativas) ────────────────── */
+  .win-window {
+    position: absolute;
+    border: 2px solid;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    box-shadow: 2px 2px 0 #000;
+    background: var(--win95-gray);
+    min-width: 120px;
+  }
+
+  .win-titlebar {
+    background: linear-gradient(to right, var(--win95-dark), #3a3aaa);
+    color: white;
+    font-size: 9px;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+
+  .win-btns { display: flex; gap: 2px; }
+
+  .win-btn {
+    width: 12px; height: 11px;
+    background: var(--win95-gray);
+    border: 1px solid;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+  }
+
+  .win-body { padding: 4px; }
+
+  .win-smoking { top: 90px; left: 90px; width: 120px; }
+
+  .win-photo {
+    width: 110px; height: 80px;
+    background: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px inset #808080;
+    font-size: 30px;
+  }
+
+  .win-axenide {
+    top: 120px; left: 190px;
+    width: 140px;
+    border-color: #4451ff #4451ff #4451ff #4451ff;
+  }
+
+  .win-axenide .win-titlebar {
+    background: linear-gradient(to right, #a004f4, #6f00ff);
+  }
+
+  .win-char-preview {
+    width: 100%; height: 60px;
+    background: #17001a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px inset #808080;
+  }
+
+  .char-silhouette {
+    width: 40px;
+    height: 55px;
+    background: linear-gradient(180deg, #ad22cc 0%, #190088 100%);
+    clip-path: polygon(50% 0%, 70% 20%, 100% 30%, 80% 50%, 85% 100%, 50% 80%, 15% 100%, 20% 50%, 0% 30%, 30% 20%);
+    opacity: 0.9;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg width="28" height="20" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="30" cy="20" rx="28" ry="10" stroke="#a0a0d0" stroke-width="2" fill="none"/>
+      <ellipse cx="30" cy="20" rx="14" ry="5" stroke="#a0a0d0" stroke-width="1.5" fill="none"/>
+      <path d="M15 14 Q30 4 45 14" stroke="#a0a0d0" stroke-width="1.5" fill="none"/>
+    </svg>
+    Uzedy
+  </a>
+  <span class="nav-right">in development.</span>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+  <h1 class="hero-logo">9e.gx16</h1>
+
+  <div class="hero-text">
+    <p>
+      I'm <span class="badge-name">Edder Gabriel</span>, 
+      or 
+      <span class="badge-alias">uzedy</span>
+      lol,
+    </p>
+    <p>Future doctor and self-taught programmer.</p>
+    <p>let me introduce my self.</p>
+  </div>
+
+  <div class="nadiesabe" style="position: absolute; left: 245px; top: 111px; z-index: 1; opacity: 0.4;">
+    <img src="img/nadie sabe.png" style="display: block; width: 400px; transform: rotate(1deg);">
+  </div>
+
+  <div class="polaroid">
+    <img src="img/𝐬𝐭𝐨𝐥𝐚𝐬.jpg" alt="foto">
+    <div class="status">[ STATUS: ONLINE ]</div>
+  </div>
+
+  <div class="psst">
+    <span>Psst...<br>here</span>
+    <span class="arrow">↓</span>
+  </div>
+
+</section>
+
+<main class="page">
+  <h2 class="section-title">About</h2>
+
+  <div class="about-grid">
+
+    <!-- LEFT: bio card -->
+    <div class="card card-left">
+      <div class="nebula-img"></div>
+
+      <p class="bio-headline">Hi <em>Everyone.</em></p>
+
+      <p class="bio-text">
+        I'm from Cortes, Honduras, currently learning to program in Python and HTML.
+        &lt;(^‿^)&gt;
+      </p>
+
+      <p class="bio-text">
+        I'm <span class="age-badge">16.7<sup>e</sup></span> years old.
+      </p>
+
+      <p class="bio-text">Born 2009</p>
+
+      <p class="bio-text">
+        I plan to study medicine in the future; I HOPE I DON'T HAVE TO STUDY ANY KIND OF ENGINEERING, PLEASE.
+      </p>
+    </div>
+
+    <!-- RIGHT: Win95 desktop card -->
+    <div class="card" style="grid-column: 2; padding: 0; overflow: hidden; border-radius: 10px;">
+      <img 
+        src="img/melmh.jpeg" 
+        alt="foto"
+        style="width: 100%; height: 100%; object-fit: cover; display: block;"
+      >
+    </div>
+
+    <!-- Window: smokin.jpg -->
+    <div class="win-window win-smoking">
+      <div class="win-titlebar">
+        <span>smokin…</span>
+        <div class="win-btns">
+          <div class="win-btn">_</div>
+          <div class="win-btn">□</div>
+          <div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+        <div class="win-photo">🚬</div>
+      </div>
+    </div>
+
+    <!-- Window: 9e.gif -->
+    <div class="win-window win-axenide">
+      <div class="win-titlebar">
+        <span>9e.gx16</span>
+        <div class="win-btns">
+          <div class="win-btn" style="color:#fff">_</div>
+          <div class="win-btn" style="color:#fff">□</div>
+          <div class="win-btn" style="color:#fff">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+        <div class="win-char-preview">
+          <div class="char-silhouette"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <div class="card" style="grid-column: 1;">
+      <p class="cs-headline">🌐 Social-Media:</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/9e.gx16/" target="_blank">Instagram</a>
+        <a href="https://open.spotify.com/user/zzz580fa4ku3pu4fe5vnhwtuz?si=6b77bf0ca0464ace" target="_blank">Spotify</a>
+        <a href="https://www.pinterest.com/edd15x/" target="_blank">Pinterest</a>
+        <a href="https://github.com/d2rkz" target="_blank">Github</a>
+      </div>
+    </div>
+
+    <!-- CS card -->
+    <div class="card" style="grid-column: 2;">
+      <p class="cs-headline">🪲 Currently in 1 Btpi.</p>
+      <p class="cs-text" style="margin-top: 0.5rem;">
+        studying in the LMH, in a technical high school graduate in computer programming, as I said I'm gonna study medicine ok?
+      </p>
+    </div>
+
+    <!-- Pasatiempos -->
+    <div class="card card-hyper" style="grid-column: 1 / -1;">
+      <p class="hyper-title">I Like:</p>
+      <div class="hyper-tags">
+        <span class="hyper-tag">🎵 Music</span>
+        <span class="hyper-tag">🎮 Gaming</span>
+        <span class="hyper-tag">🌌 Biology</span>
+        <span class="hyper-tag">🎨 Art</span>
+        <span class="hyper-tag">🎞️ Animation</span>
+        <span class="hyper-tag">💻 Coding</span>
+      </div>
+    </div>
+
+    <!-- Games -->
+    <div class="card card-hyper" style="grid-column: 1 / -1;">
+      <h3 class="juegosfriv-title">Games</h3>
+      <div class="juegosfriv-items">
+        <span class="juegosfriv-item">
+          Ultrakill
+          <img src="img/Ultrakill_cover.png">
+        </span>
+        <span class="juegosfriv-item">
+          Minecraft
+          <img src="img/minecraft.jpg">
+        </span>
+        <span class="juegosfriv-item">
+          Genshin
+          <img src="img/genshin.jpg">
+        </span>
+        <span class="juegosfriv-item">
+          Roblox
+          <img src="img/roblox.jpg">
+        </span>
+        <span class="juegosfriv-item">
+          BrawlStars
+          <img src="img/brawl.jpg">
+        </span>
+      </div>
+    </div>
+
+    <!-- Galería -->
+    <div class="card card-hyper" style="grid-column: 1 / -1;">
+      <h3 class="gallery-title">GALLERY</h3>
+
+      <div class="gallery-filters">
+        <span class="filter active">ALL</span>
+        <span class="filter">APPROVED</span>
+        <span class="filter">REJECTED</span>
+        <span class="filter">DOWNLOAD</span>
+      </div>
+
+      <div class="gallery-grid-proof">
+        <div class="gallery-item-proof">
+          <img src="img/2.jpeg" alt="Foto 1">
+          <span class="item-id">#2394</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/spooky.jpeg" alt="Foto 2">
+          <span class="item-id">#2393</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/3.jpeg" alt="Foto 3">
+          <span class="item-id">#2392</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/4.jpeg" alt="Foto 4">
+          <span class="item-id">#2395</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/5.jpeg" alt="Foto 5">
+          <span class="item-id">#2386</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/6.jpeg" alt="Foto 6">
+          <span class="item-id">#2396</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/7.jpeg" alt="Foto 7">
+          <span class="item-id">#2397</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/8.jpeg" alt="Foto 8">
+          <span class="item-id">#2387</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/9.jpeg" alt="Foto 9">
+          <span class="item-id">#2388</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/10.jpeg" alt="Foto 10">
+          <span class="item-id">#2389</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/11.jpeg" alt="Foto 11">
+          <span class="item-id">#2390</span>
+        </div>
+        <div class="gallery-item-proof">
+          <img src="img/12.jpeg" alt="Foto 12">
+          <span class="item-id">#2391</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
